@@ -10,18 +10,6 @@ internal class FileToAnalise
 
     string FilePath { get; set; }
 
-    public void BooleanReadFile()
-    {
-        byte[]? bytes = File.ReadAllBytes(FilePath);
-
-        StringBuilder sb = new StringBuilder();
-
-        foreach (byte b in bytes)
-        {
-            sb.Append(Convert.ToString(b, 2).PadLeft(8, '0'));
-        }
-    }
-
     public bool SearchString(string ToFind)
     {
         int StartIndex = 0;

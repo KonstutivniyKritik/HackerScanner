@@ -85,6 +85,7 @@ internal class Analiser
 
     public Analiser()
     {
+        
         FilesToAnalise = new FileToAnalise[NumberOfFile];
         for (int i = 0; i < NumberOfFile; i++)
         {
@@ -149,8 +150,9 @@ internal class Analiser
                         Console.WriteLine($"\tFound {ToFind}\n");
                         Console.ResetColor();
                         StartIndex += 10;
+                        File.AppendAllText("C:/analise/outlog.log", $"Wordl lenght <{MinWordSize}> Index <{StartIndex}> Found <{ToFind}> \n");
                         break;
-                        //File.AppendAllText("C:/analise/outlog.log", sb.ToString());
+                         
                     }
                     
 
