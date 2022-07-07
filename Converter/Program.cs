@@ -4,8 +4,8 @@ public class Program
 {
      static void Main(string[] args)
     {
-        Analiser A = new();
-        A.Process(MinWordSize: 50,80);
+        Analiser A = new(Analiser.Setup.Hard);
+        A.Process(MinWordSize: 100,80);
     }
 
     public static string FileToBinaryString(string FilePath)
