@@ -39,16 +39,6 @@
       "frameworks": {
         "net6.0": {
           "targetAlias": "net6.0",
-          "dependencies": {
-            "Xbim.Essentials": {
-              "target": "Package",
-              "version": "[5.1.341, )"
-            },
-            "Xbim.Geometry": {
-              "target": "Package",
-              "version": "[5.1.437, )"
-            }
-          },
           "imports": [
             "net461",
             "net462",

@@ -1,64 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "9zYc0ewa9eMo91+gdnGRe2Zm+IuU5kYSf3BJ6twMgLgQ5ERjYPLseqDYTmQ6WvDi1glEej+YuG2FIfVLtNWM8w==",
+  "dgSpecHash": "z0M3XXJvIWi1z8Q27SiO+tUdqMilK9STIi5mpvc6MsBf2jQq/QRMKZYtuiZ0yzABDdojtRRs/SjYWwIY3pzOMg==",
   "success": true,
   "projectFilePath": "C:\\Users\\Артем\\source\\repos\\Converter\\Converter\\Converter.csproj",
-  "expectedPackageFiles": [
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.configuration\\3.1.3\\microsoft.extensions.configuration.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.configuration.abstractions\\3.1.3\\microsoft.extensions.configuration.abstractions.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.configuration.binder\\3.1.3\\microsoft.extensions.configuration.binder.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.dependencyinjection\\3.1.3\\microsoft.extensions.dependencyinjection.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.dependencyinjection.abstractions\\3.1.3\\microsoft.extensions.dependencyinjection.abstractions.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.logging\\3.1.3\\microsoft.extensions.logging.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\3.1.3\\microsoft.extensions.logging.abstractions.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.options\\3.1.3\\microsoft.extensions.options.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.extensions.primitives\\3.1.3\\microsoft.extensions.primitives.3.1.3.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.netcore.platforms\\1.1.0\\microsoft.netcore.platforms.1.1.0.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\microsoft.netcore.targets\\1.1.0\\microsoft.netcore.targets.1.1.0.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\system.memory\\4.5.4\\system.memory.4.5.4.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\system.runtime\\4.3.0\\system.runtime.4.3.0.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\system.threading.tasks\\4.3.0\\system.threading.tasks.4.3.0.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.common\\5.1.341\\xbim.common.5.1.341.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.essentials\\5.1.341\\xbim.essentials.5.1.341.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.geometry\\5.1.437\\xbim.geometry.5.1.437.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.geometry.engine.interop\\5.1.437\\xbim.geometry.engine.interop.5.1.437.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.ifc\\5.1.341\\xbim.ifc.5.1.341.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.ifc2x3\\5.1.341\\xbim.ifc2x3.5.1.341.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.ifc4\\5.1.341\\xbim.ifc4.5.1.341.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.io.memorymodel\\5.1.341\\xbim.io.memorymodel.5.1.341.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.modelgeometry.scene\\5.1.437\\xbim.modelgeometry.scene.5.1.437.nupkg.sha512",
-    "C:\\Users\\Артем\\.nuget\\packages\\xbim.tessellator\\5.1.341\\xbim.tessellator.5.1.341.nupkg.sha512"
-  ],
-  "logs": [
-    {
-      "code": "NU1603",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Xbim.Geometry.Engine.Interop 5.1.437 зависит от Xbim.Tessellator (>= 5.1.314), но Xbim.Tessellator 5.1.314 не найден. Использовано наилучшее приближенное соответствие Xbim.Tessellator 5.1.323.",
-      "libraryId": "Xbim.Tessellator",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"Xbim.Geometry.Engine.Interop 5.1.437\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "Xbim.Geometry.Engine.Interop",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    },
-    {
-      "code": "NU1701",
-      "level": "Warning",
-      "warningLevel": 1,
-      "message": "Пакет \"Xbim.ModelGeometry.Scene 5.1.437\" был восстановлен с помощью \".NETFramework,Version=v4.6.1, .NETFramework,Version=v4.6.2, .NETFramework,Version=v4.7, .NETFramework,Version=v4.7.1, .NETFramework,Version=v4.7.2, .NETFramework,Version=v4.8\", а не целевой платформы проекта \"net6.0\". Этот пакет может быть не полностью совместим с вашим проектом.",
-      "libraryId": "Xbim.ModelGeometry.Scene",
-      "targetGraphs": [
-        "net6.0"
-      ]
-    }
-  ]
+  "expectedPackageFiles": [],
+  "logs": []
 }

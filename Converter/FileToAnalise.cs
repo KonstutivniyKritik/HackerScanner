@@ -10,9 +10,11 @@ internal class FileToAnalise
 
     string FilePath { get; set; }
 
-    public bool SearchString(string ToFind)
+    public bool SearchString(string ToFind, int? BitShift)
     {
         int StartIndex = 0;
+        if (BitShift != null)
+            StartIndex = (int)BitShift;
 
         byte[]? bytes = File.ReadAllBytes(FilePath);
         string BinaryFileString = Program.ToBinary(bytes);
@@ -30,7 +32,7 @@ internal class FileToAnalise
                     StartIndex += 10;
             }
         }
-        catch
+         catch
         {
             return false;
         }    

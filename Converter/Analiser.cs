@@ -10,14 +10,14 @@ internal class Analiser
 {
     //hard setup start
 
-    //set files path down below
+        //set files path down below
     string[] Adresses =
         {"C:/Analise/0.SLDPRT",
          "C:/Analise/1.SLDPRT",
          "C:/Analise/2.SLDPRT",
          "C:/Analise/3.SLDPRT" };
 
-    //set number of files down below
+        //set number of files down below
     public int NumberOfFile { get; set; } = 4;
 
     //hard setup end
@@ -25,6 +25,9 @@ internal class Analiser
     public static FileToAnalise[] FilesToAnalise;
 
     //Soft setup
+    int? SoftWordSize;
+    static public string? SoftOutlog;
+    int? BitShift = 10;
 
     public Analiser(Setup setup)
     {
@@ -32,7 +35,15 @@ internal class Analiser
         {
             Repeat: //GoTo метка
             Console.WriteLine("Введите количество анализируемых файлов:");
-            NumberOfFile = Convert.ToInt32(Console.ReadLine());
+            try
+            {
+                NumberOfFile = Convert.ToInt32(Console.ReadLine());
+            }
+            catch
+            {
+                Console.Clear();
+                goto Repeat;
+            }
             Adresses = new string[NumberOfFile];
             Console.Clear();
             Console.WriteLine($"Количество анализируемых файлов = {NumberOfFile}" +
@@ -91,8 +102,19 @@ internal class Analiser
                 goto Repeat;
             }
 
-            Console.WriteLine();
+            Console.WriteLine("Set minimum word size by letters. \n" +
+                              "Example: Word <<Properties>> Word size = 10");
+            SoftWordSize = Convert.ToInt16(Console.ReadLine());
+            Console.WriteLine("Set Byte Shift. Skip if there no byte shift in file");
+            try { BitShift = Convert.ToInt16(Console.ReadLine()); }
+            catch { BitShift = 0; };
+            Console.WriteLine("Set ouput log file path");
+            SoftOutlog = Console.ReadLine();
+
         }
+
+        //Hard setup continue below
+        //Dont touch
         else
         {
             FilesToAnalise = new FileToAnalise[NumberOfFile];
@@ -116,17 +138,26 @@ internal class Analiser
         }
     }
 
-    public void Process(int MinWordSize, int MaxWordSize)
+    public void Process(int MinWordSize)
     {
+
         bool[] CheckArray = new bool[NumberOfFile];
         CheckArray[0] = true;
         int StartIndex = 0;
         string FileZero = Adresses[0];
+        string HardOutlog = "C:/outlog.txt";
 
         byte[]? bytes = File.ReadAllBytes(FileZero);
         string BinaryFileString = Program.ToBinary(bytes);
         //Console.WriteLine("File zero in binary:");
         //Console.WriteLine(BinaryFileString);
+
+        if (SoftWordSize != null)
+            MinWordSize = (int)SoftWordSize * 10;
+        if (SoftOutlog != null)
+            HardOutlog = SoftOutlog;
+        if (BitShift != null)
+            StartIndex = (int)BitShift;
 
         try
         {
@@ -139,7 +170,7 @@ internal class Analiser
                 //Отправляем в массив файлов для анализа
                 for (int i = 1; i < NumberOfFile; i++)
                 {
-                    CheckArray[i] = FilesToAnalise[i].SearchString(ToFind);
+                    CheckArray[i] = FilesToAnalise[i].SearchString(ToFind, (int)BitShift);
 
                     if (CheckArray[i] == false)
                     {
@@ -153,28 +184,26 @@ internal class Analiser
                     
                     Console.WriteLine($"Found {ToFind} in file {i}");
                     
-
                     if (i == NumberOfFile - 1)
                     {
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\tFound {ToFind}\n");
                         Console.ResetColor();
-                        StartIndex += 10;
-                        File.AppendAllText("C:/analise/outlog.log", $"Wordl lenght <{MinWordSize}> Index <{StartIndex}> Found <{ToFind}> \n");
+                        StartIndex += 10;                      
+                        File.AppendAllText(HardOutlog, $"Index <{StartIndex}> Found <{ToFind}> \n");
                         break;
                          
                     }
-                    
-
                 }               
             }
         }
         catch(Exception ex)
         {
-            Console.WriteLine($"Исключение: {ex.Message}");
-            Console.WriteLine($"Метод: {ex.TargetSite}");
-            Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
-            //Console.WriteLine("\nEnd Of analise. See resaults in C:/analise/Ouput.log");
+            //Console.WriteLine($"Исключение: {ex.Message}");
+            //Console.WriteLine($"Метод: {ex.TargetSite}");
+            //Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
+            File.AppendAllText(HardOutlog, $"Index <000> Found <00000000  00000000  00000000  00000000 > ");
+            Console.WriteLine($"\nEnd Of analise. See resaults in {HardOutlog}");
         }
     }
 

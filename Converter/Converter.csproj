@@ -1,4 +1,4 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
     <OutputType>EXE</OutputType>
@@ -6,10 +6,5 @@
     <ImplicitUsings>enable</ImplicitUsings>
 	  <Nullable>enable</Nullable>
   </PropertyGroup>
-
-  <ItemGroup>
-    <PackageReference Include="Xbim.Essentials" Version="5.1.341" />
-    <PackageReference Include="Xbim.Geometry" Version="5.1.437" />
-  </ItemGroup>
 
 </Project>
