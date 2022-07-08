@@ -24,28 +24,28 @@ We want seek common sequence lenght = 5 word
 4 step:  
 &emsp;1.txt => shift the sequence by 1 byte = ktidn  
 5 step  
-&emsp;seek for ktidn in 2.txt, 3.txt, 4.txt
+&emsp;seek for ktidn in 2.txt, 3.txt, 4.txt  
 6 step:
-  there no such sequence (ktidn) in other file
-7 step:
-  1.txt => shift the sequence by 1 byte = tidnr
-8 step
-  seek for tidnr in 2.txt, 3.txt, 4.txt
-9 step:
-  there no such sequence (tidnr) in other file
+&emsp;there no such sequence (ktidn) in other file  
+7 step:  
+&emsp;1.txt => shift the sequence by 1 byte = tidnr  
+8 step  
+&emsp;seek for tidnr in 2.txt, 3.txt, 4.txt  
+9 step:  
+&emsp;there no such sequence (tidnr) in other file
   
 ....and so on till sequence HELLO....
 
-10 step:
-  1.txt => shift the sequence by 1 byte = HELLO
-11 step: 
-  seek for qktid in 2.txt, 3.txt, 4.txt
-12 step:
-  Found sequence in every file
-13 step: 
-  Write sequence in outlog file
-14 step
-   1.txt => shift the sequence by 1 byte = ELLOf
+10 step:  
+&emsp;1.txt => shift the sequence by 1 byte = HELLO  
+11 step:  
+&emsp;seek for qktid in 2.txt, 3.txt, 4.txt  
+12 step:  
+&emsp;Found sequence in every file  
+13 step:  
+&emsp;Write sequence in outlog file  
+14 step  
+&emsp;1.txt => shift the sequence by 1 byte = ELLOf  
 ...And it loop until file is ended.
 
 Case Idea of this programm is to decrypt, hack file formats
