@@ -154,8 +154,6 @@ internal class Analiser
 
         if (SoftWordSize != null)
             MinWordSize = (int)SoftWordSize * 10;
-        if (SoftOutlog != null)
-            HardOutlog = SoftOutlog;
         if (BitShift != null)
             StartIndex = (int)BitShift;
 

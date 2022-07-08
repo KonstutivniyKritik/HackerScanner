@@ -24,7 +24,7 @@ public class OutlogHandler
 
         
 
-        foreach (string line in System.IO.File.ReadLines(OutlogPath))
+        foreach (string line in System.IO.File.ReadLines("C:/outlog.txt"))
         {          
             strN = strNplus1;
             strNplus1 = line;
@@ -42,12 +42,10 @@ public class OutlogHandler
             strNpuls1getIndx = strNpuls1getIndx.Substring(0, strNpuls1getIndx.IndexOf('>'));
             int IndxNplus1 = Convert.ToInt32(strNpuls1getIndx);
 
-            Console.WriteLine(OutlogPath);
-            Console.WriteLine(IndxNplus1 - IndxN);
 
             if (IndxNplus1 - IndxN != 10)
             {
-                File.AppendAllText("C:/HandlerCheck.txt", $"Word Lenght {HanlerOutLog.Length} Found <{HanlerOutLog}> \n\n");
+                File.AppendAllText(OutlogPath, $"Word Lenght <{HanlerOutLog.Length}> Found <{HanlerOutLog}> \n\n");
                 Console.WriteLine("I wrote");
                 HanlerOutLog = "";
                 continue;
@@ -63,6 +61,8 @@ public class OutlogHandler
                 HanlerOutLog = strNgetSqnc + strNplus1getSqnc.Substring(strNplus1getSqnc.Length - 10);
             HanlerOutLog += strNplus1getSqnc.Substring(strNplus1getSqnc.Length - 10);
         }
+
+        File.Delete("C:/outlog.txt");
     }      
 }
 
