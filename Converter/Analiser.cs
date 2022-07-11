@@ -27,7 +27,7 @@ internal class Analiser
     //Soft setup
     int? SoftWordSize;
     static public string? SoftOutlog;
-    int? BitShift = 10;
+    int BitShift = 0;
 
     public Analiser(Setup setup)
     {
@@ -102,14 +102,26 @@ internal class Analiser
                 goto Repeat;
             }
 
-            Console.WriteLine("Set minimum word size by letters. \n" +
-                              "Example: Word <<Properties>> Word size = 10");
-            SoftWordSize = Convert.ToInt16(Console.ReadLine());
-            Console.WriteLine("Set Byte Shift. Skip if there no byte shift in file");
-            try { BitShift = Convert.ToInt16(Console.ReadLine()); }
-            catch { BitShift = 0; };
-            Console.WriteLine("Set ouput log file path");
-            SoftOutlog = Console.ReadLine();
+            WordInput: //goto точка
+            Console.WriteLine("Укажите минимальный размер слова в буквах \n" +
+                              "Пример: Слово <<Properties>> Размер слова = 10");
+            try { SoftWordSize = Convert.ToInt16(Console.ReadLine()); }
+            catch { goto WordInput; }
+
+           // Console.WriteLine("Установите побитовый сдвиг. Нажмите Enter если сдвига нет");
+           // try { BitShift = Convert.ToInt16(Console.ReadLine()); }
+           // catch { BitShift = 0; };
+
+            OutputFileInput:
+            Console.WriteLine("Введите путь файла вывода информации");
+            try 
+            { 
+                SoftOutlog = Console.ReadLine();
+                Path.GetFullPath(SoftOutlog);
+            }
+            catch { goto OutputFileInput; }
+           
+            
 
         }
 
@@ -154,8 +166,8 @@ internal class Analiser
 
         if (SoftWordSize != null)
             MinWordSize = (int)SoftWordSize * 10;
-        if (BitShift != null)
-            StartIndex = (int)BitShift;
+
+        StartIndex = (int)BitShift;
 
         try
         {
@@ -187,8 +199,11 @@ internal class Analiser
                         Console.ForegroundColor = ConsoleColor.Green;
                         Console.WriteLine($"\tFound {ToFind}\n");
                         Console.ResetColor();
-                        StartIndex += 10;                      
-                        File.AppendAllText(HardOutlog, $"Index <{StartIndex}> Found <{ToFind}> \n");
+                        StartIndex += 10;                
+                        if (BitShift != 0)
+                            File.AppendAllText(HardOutlog, $"Index <{StartIndex}> Found <{BitShiftConverter(ToFind)}> \n");
+                        else
+                            File.AppendAllText(HardOutlog, $"Index <{StartIndex}> Found <{ToFind}> \n");
                         break;
                          
                     }
@@ -205,7 +220,34 @@ internal class Analiser
         }
     }
 
-        public enum Setup
+    static public string BitShiftConverter(string BitString)
+    {
+        string StringAfter = BitString.Replace(" ", "");
+
+        StringAfter = SplitStr(StringAfter, 7);
+       
+        return StringAfter;
+    }
+
+    static string SplitStr(string str, int maxSymbols)
+    {
+        var sb = new StringBuilder();
+        var counter = 0;
+        foreach (var element in str)
+        {
+            if (counter == maxSymbols)
+            {
+                sb.Append(' ');
+                counter = 0;
+            }
+
+            sb.Append(element);
+            counter++;
+        }
+        return sb.ToString();
+    }
+
+    public enum Setup
     {
         Hard,
         Soft

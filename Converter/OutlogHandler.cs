@@ -33,12 +33,12 @@ public class OutlogHandler
                 continue;
 
             
-            String strNgetIndx = strN.Substring(strN.IndexOf('<') + 1, strN.IndexOf('>'));
+            String strNgetIndx = strN.Substring(strN.IndexOf('<') + 1, strN.IndexOf('>') - 1);
             strNgetIndx = strNgetIndx.Substring(0, strNgetIndx.IndexOf('>'));
             int IndxN = Convert.ToInt32(strNgetIndx);
             
 
-            String strNpuls1getIndx = strNplus1.Substring(strNplus1.IndexOf('<') + 1, strNplus1.IndexOf('>'));
+            String strNpuls1getIndx = strNplus1.Substring(strNplus1.IndexOf('<') + 1, strNplus1.IndexOf('>') - 1);
             strNpuls1getIndx = strNpuls1getIndx.Substring(0, strNpuls1getIndx.IndexOf('>'));
             int IndxNplus1 = Convert.ToInt32(strNpuls1getIndx);
 
@@ -46,7 +46,6 @@ public class OutlogHandler
             if (IndxNplus1 - IndxN != 10)
             {
                 File.AppendAllText(OutlogPath, $"Word Lenght <{HanlerOutLog.Length}> Found <{HanlerOutLog}> \n\n");
-                Console.WriteLine("I wrote");
                 HanlerOutLog = "";
                 continue;
             }
@@ -54,11 +53,14 @@ public class OutlogHandler
             //строка имеет вид
             //Index <180> Found <00010100  .......  00011011  > 
             int DealingSubstring = strN.LastIndexOf('<');
-            String strNgetSqnc = strN.Substring(strN.LastIndexOf('<') + 1, strN.LastIndexOf('>') - 1 - DealingSubstring);
-            String strNplus1getSqnc = strNplus1.Substring(strNplus1.LastIndexOf('<') + 1, strNplus1.LastIndexOf('>') - 1 - DealingSubstring);
-           
+            String strNgetSqnc = strN.Substring(strN.LastIndexOf('<') + 1, strN.LastIndexOf('>') - DealingSubstring - 1);
+           // Console.WriteLine(strNgetSqnc);
+            int DealingSubstringplus1 = strNplus1.LastIndexOf('<');
+            String strNplus1getSqnc = strNplus1.Substring(strNplus1.LastIndexOf('<') + 1, strNplus1.LastIndexOf('>') - DealingSubstringplus1 - 1);
+           // Console.WriteLine(strNplus1getSqnc);
+
             if (HanlerOutLog == "")
-                HanlerOutLog = strNgetSqnc + strNplus1getSqnc.Substring(strNplus1getSqnc.Length - 10);
+                HanlerOutLog = strNgetSqnc + strNplus1getSqnc.Substring(strNplus1getSqnc.Length - 10) ;
             HanlerOutLog += strNplus1getSqnc.Substring(strNplus1getSqnc.Length - 10);
         }
 

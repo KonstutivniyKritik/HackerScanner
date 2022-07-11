@@ -8,6 +8,8 @@ public class Program
         A.Process(MinWordSize: 100);
         OutlogHandler H = new();
         H.Handle();
+       
+        
     }
 
     public static string FileToBinaryString(string FilePath)
