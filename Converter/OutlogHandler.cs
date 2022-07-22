@@ -54,10 +54,10 @@ public class OutlogHandler
             //Index <180> Found <00010100  .......  00011011  > 
             int DealingSubstring = strN.LastIndexOf('<');
             String strNgetSqnc = strN.Substring(strN.LastIndexOf('<') + 1, strN.LastIndexOf('>') - DealingSubstring - 1);
-           // Console.WriteLine(strNgetSqnc);
+            Console.WriteLine(strNgetSqnc);
             int DealingSubstringplus1 = strNplus1.LastIndexOf('<');
             String strNplus1getSqnc = strNplus1.Substring(strNplus1.LastIndexOf('<') + 1, strNplus1.LastIndexOf('>') - DealingSubstringplus1 - 1);
-           // Console.WriteLine(strNplus1getSqnc);
+            Console.WriteLine(strNplus1getSqnc);
 
             if (HanlerOutLog == "")
                 HanlerOutLog = strNgetSqnc + strNplus1getSqnc.Substring(strNplus1getSqnc.Length - 10) ;

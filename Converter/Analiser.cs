@@ -26,7 +26,7 @@ internal class Analiser
 
     //Soft setup
     int? SoftWordSize;
-    static public string? SoftOutlog;
+    static public string SoftOutlog;
     int BitShift = 0;
 
     public Analiser(Setup setup)
@@ -52,6 +52,8 @@ internal class Analiser
             {
                 Console.Write($"Файл {i + 1}: ");
                 Adresses[i] = Console.ReadLine();
+                if (Adresses[i] == "")
+                    Adresses[i] = "2";
 
                 string path = Adresses[i];
 
@@ -108,9 +110,9 @@ internal class Analiser
             try { SoftWordSize = Convert.ToInt16(Console.ReadLine()); }
             catch { goto WordInput; }
 
-           // Console.WriteLine("Установите побитовый сдвиг. Нажмите Enter если сдвига нет");
-           // try { BitShift = Convert.ToInt16(Console.ReadLine()); }
-           // catch { BitShift = 0; };
+            Console.WriteLine("Установите побитовый сдвиг. Нажмите Enter если сдвига нет");
+            try { BitShift = Convert.ToInt16(Console.ReadLine()); }
+            catch { BitShift = 0; };
 
             OutputFileInput:
             Console.WriteLine("Введите путь файла вывода информации");
@@ -200,8 +202,8 @@ internal class Analiser
                         Console.WriteLine($"\tFound {ToFind}\n");
                         Console.ResetColor();
                         StartIndex += 10;                
-                        if (BitShift != 0)
-                            File.AppendAllText(HardOutlog, $"Index <{StartIndex}> Found <{BitShiftConverter(ToFind)}> \n");
+                        if (BitShift != 0)              
+                            File.AppendAllText(HardOutlog, $"Index <{StartIndex}> found <{BitShiftConverter(ToFind)} > \n");                         
                         else
                             File.AppendAllText(HardOutlog, $"Index <{StartIndex}> Found <{ToFind}> \n");
                         break;
@@ -216,16 +218,15 @@ internal class Analiser
             //Console.WriteLine($"Метод: {ex.TargetSite}");
             //Console.WriteLine($"Трассировка стека: {ex.StackTrace}");
             File.AppendAllText(HardOutlog, $"Index <000> Found <00000000  00000000  00000000  00000000 > ");
-            Console.WriteLine($"\nEnd Of analise. See resaults in {HardOutlog}");
+            Console.WriteLine($"\nКонец анализа. Смотри результаты в {SoftOutlog}");
         }
     }
 
     static public string BitShiftConverter(string BitString)
     {
         string StringAfter = BitString.Replace(" ", "");
-
-        StringAfter = SplitStr(StringAfter, 7);
-       
+        StringAfter = SplitStr(StringAfter, 8);
+        StringAfter.Append(' ');
         return StringAfter;
     }
 
